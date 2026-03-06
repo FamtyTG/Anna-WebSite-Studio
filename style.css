@@ -1011,9 +1011,8 @@ video {
         height: 100svh;
         /* More accurate on mobile browsers */
         width: 100%;
-        display: flex;
-        align-items: flex-end;
-        /* Align container to bottom */
+        display: block !important;
+        /* Ignore parent flex rules */
         padding: 0 !important;
         /* Critical: override section padding */
     }
@@ -1028,7 +1027,9 @@ video {
     }
 
     .hero-container {
-        position: relative !important;
+        position: absolute !important;
+        bottom: 0 !important;
+        left: 0;
         width: 100% !important;
         height: auto !important;
         min-height: auto !important;
