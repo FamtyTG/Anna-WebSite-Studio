@@ -1005,10 +1005,30 @@ video {
         padding: 80px 0;
     }
 
+    .hero {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+        padding-top: 0;
+    }
+
+    .hero-bg-wrapper {
+        position: relative;
+        height: 65vh;
+        width: 100%;
+        z-index: 1;
+    }
+
     .hero-container {
         min-height: auto;
-        padding-top: 100px;
-        gap: 40px;
+        padding: 40px 5% 60px;
+        z-index: 2;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .bg-number {
+        display: none;
     }
 
     .hero-title {
@@ -1021,15 +1041,14 @@ video {
     }
 
     .hero-bg-img {
-        object-position: center center;
-        /* Keep entirely visible and centered on mobile */
-        filter: brightness(0.8) contrast(1.1) blur(2px);
-        /* Lower exposure and add slight artistic blur */
+        object-position: center 25%;
+        /* Adjusted to show face better in the crop */
+        filter: brightness(0.9) contrast(1.05) blur(0px);
+        /* Slightly cleaner since text is no longer overlapping */
     }
 
     .hero-overlay {
-        background: rgba(0, 0, 0, 0.4);
-        /* Darken overall to pop the text */
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0.3) 100%);
         z-index: 3;
     }
 
