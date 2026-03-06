@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,300;0,400;1,300&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400;500&display=swap"
         rel="stylesheet">
 
     <!-- GSAP / Lenis -->
@@ -40,7 +40,10 @@
                 <!-- Snake Head -->
                 <circle cx="60" cy="20" r="1.5" fill="#C2B4A3" class="loader-path-head" />
             </svg>
-            <div class="loader-text">ANNA MAKLAGINA</div>
+            <div class="loader-logo-wrap loader-text">
+                <span class="loader-anna">ANNA</span>
+                <span class="loader-maclagina">MACLAGINA</span>
+            </div>
         </div>
     </div>
 
@@ -58,7 +61,7 @@
     <header class="header">
         <div class="container header-inner gsap-reveal">
             <div class="logo">
-                <a href="#hero">Anna Maklagina.</a>
+                <a href="#hero">Anna Maclagina.</a>
             </div>
             <nav class="nav">
                 <ul class="nav-links">
@@ -72,25 +75,29 @@
 
     <main>
         <!-- 01. HERO -->
-        <section id="hero" class="hero relative">
+        <section id="hero" class="hero relative hero-fullscreen">
+            <!-- BACKGROUND IMAGE WITH OVERLAY -->
+            <div class="hero-bg-wrapper">
+                <div class="hero-bg-blur gsap-parallax-bg" style="background-image: url('assets/result_full.webp');">
+                </div>
+                <img src="assets/result_full.webp" alt="Анна Маклагина" class="hero-bg-img">
+                <div class="hero-overlay"></div>
+            </div>
+
             <div class="bg-number" data-speed="150">01</div>
             <div class="container hero-container relative">
 
-                <div class="hero-left gsap-reveal">
+                <div class="hero-content gsap-reveal">
                     <h1 class="hero-title"><span class="nowrap italic-accent">Естественный</span><br>перманент</h1>
                     <p class="body-text hero-subtitle">
                         Забудьте о «нарисованных» бровях. Ежедневная красота, которая экономит ваше время. Ювелирная
                         точность без искусственного контура. Тончайшие штрихи, создающие иллюзию природной густоты.
                     </p>
-                    <a href="https://t.me/maclagina" target="_blank" class="btn btn-solid hoverable">Записаться на
-                        процедуру</a>
-                </div>
-
-                <div class="hero-right gsap-reveal">
-                    <div class="img-wrap aspect-3-4 hoverable gsap-parallax">
-                        <img src="assets/IMG_4485.webp" alt="Анна Маклагина">
+                    <div class="hero-buttons">
+                        <a href="#services" class="btn btn-outline hoverable">Услуги</a>
                     </div>
                 </div>
+
             </div>
         </section>
 
@@ -219,7 +226,10 @@
             </div>
 
             <div class="footer-center gsap-reveal">
-                <h2 class="massive-logo">ANNA MAKLAGINA</h2>
+                <div class="brand-logo-wrap">
+                    <h2 class="massive-logo">ANNA</h2>
+                    <div class="brand-sub">MACLAGINA</div>
+                </div>
             </div>
         </footer>
     </main>
