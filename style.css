@@ -1,0 +1,759 @@
+/* 
+=========================================================
+  AESTHETICS MANIFESTO: FLOW, SAGE & DARK MODE
+=========================================================
+*/
+
+:root {
+    --bg-color: #F9F7F2;
+    --text-main: #1A1A1A;
+    --text-muted: #555555;
+    --text-inverted: #FFFFFF;
+    --line-color: #E2DDD5;
+    --number-color: #C2B4A3;
+    --hover-nude: #EFEBE1;
+    --color-sage: #2F3E33;
+    /* Dive Transition Var */
+    --vignette-opacity: 0;
+
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Inter', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0 !important;
+}
+
+body,
+a,
+button,
+input {
+    cursor: none !important;
+}
+
+html {
+    scroll-behavior: auto;
+}
+
+/* 
+=========================================================
+  TEXTURE & VIGNETTE (OVER EVERYTHING)
+=========================================================
+*/
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 999998;
+    opacity: 0.08;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Deep Dark Vignette controlled by scrolling to the Dark Section */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 999997;
+    background: radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.85) 150%);
+    opacity: var(--vignette-opacity);
+    will-change: opacity;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-color);
+    color: var(--text-main) !important;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    overflow-x: hidden;
+    width: 100vw;
+}
+
+/* 4-COLUMN BACKGROUND SKELETON */
+.bg-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.grid-line {
+    width: 1px;
+    height: 100%;
+    background-color: var(--line-color);
+    opacity: 0.8;
+}
+
+/* 
+=========================================================
+  PREMIUM PRELOADER (THE INTRIGUE)
+=========================================================
+*/
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #1A1A1A;
+    z-index: 9999997;
+    /* Under noise grain */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: auto;
+    /* Blocks clicks */
+}
+
+.preloader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+
+.loader-svg {
+    width: 60px;
+    height: 120px;
+    overflow: visible;
+}
+
+.loader-path {
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    animation: loaderDraw 3s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+.loader-path-head {
+    opacity: 0;
+    animation: fadeInLoader 0.5s 2.5s forwards;
+}
+
+.loader-text {
+    font-family: var(--font-serif);
+    font-size: 11px;
+    color: #FFFFFF;
+    letter-spacing: 0.3em;
+    opacity: 0;
+    animation: fadeInLoader 2s 1.5s forwards;
+}
+
+@keyframes loaderDraw {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes fadeInLoader {
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* 
+=========================================================
+  INVERTED SMART CURSOR & FLOATING IMAGES
+=========================================================
+*/
+.cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    background-color: #FFFFFF;
+    border-radius: 50% !important;
+    pointer-events: none;
+    z-index: 999999;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+    transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+    will-change: transform;
+}
+
+.cursor-ring.hover-active {
+    width: 60px;
+    height: 60px;
+}
+
+.float-img-reveal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 360px;
+    /* 3:4 roughly */
+    pointer-events: none;
+    z-index: 999990;
+    /* Right below Vignette */
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+.float-img-reveal img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+    /* Massive shadow to lift it */
+}
+
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 80px;
+    position: relative;
+    z-index: 10;
+}
+
+section {
+    padding: 180px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* DECORATIVE NUMBERS */
+.bg-number {
+    position: absolute;
+    top: 0;
+    left: 5%;
+    font-family: var(--font-serif);
+    font-size: 200px;
+    color: var(--color-sage) !important;
+    opacity: 0.12 !important;
+    font-weight: 300;
+    z-index: 1;
+    pointer-events: none;
+    line-height: 1;
+    will-change: transform;
+}
+
+/* TYPOGRAPHY */
+p,
+li,
+span,
+h1,
+h2,
+h3,
+a {
+    opacity: 1 !important;
+    color: var(--text-main);
+}
+
+.hero-subtitle,
+.body-text p {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.8;
+    max-width: 480px;
+    position: relative;
+    z-index: 10;
+    color: var(--text-muted) !important;
+}
+
+.hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(64px, 8vw, 110px);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.section-title {
+    font-family: var(--font-serif);
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    font-weight: 300;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 10;
+}
+
+.italic-accent {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    padding-right: 0.1em;
+}
+
+a {
+    text-decoration: none;
+    position: relative;
+    z-index: 10;
+}
+
+.nav {
+    z-index: 100;
+    position: relative;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 3rem;
+}
+
+.nav-links a {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    transition: color 0.4s ease;
+}
+
+.nav-links a:hover {
+    color: var(--color-sage) !important;
+}
+
+/* EMERALD MAGNETIC BUTTONS */
+.btn-solid {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    background-color: var(--text-main);
+    color: var(--text-inverted) !important;
+    border: 1px solid var(--text-main);
+    padding: 1.2rem 2.5rem;
+    margin-top: 3rem;
+    position: relative;
+    z-index: 999;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+    will-change: transform;
+}
+
+.btn-solid:hover {
+    background-color: var(--color-sage);
+    border-color: var(--color-sage);
+    color: #FFFFFF !important;
+}
+
+.btn-solid.invert {
+    border-color: var(--text-inverted);
+}
+
+.btn-solid.invert:hover {
+    background-color: var(--color-sage);
+    border-color: var(--color-sage);
+    color: #FFFFFF !important;
+}
+
+/* IMAGES AND AMBIENT SHADOWS */
+img,
+video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.img-wrap {
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.06), 0 10px 20px rgba(0, 0, 0, 0.03);
+}
+
+.aspect-3-4 {
+    aspect-ratio: 3/4;
+}
+
+.aspect-16-9 {
+    aspect-ratio: 16/9;
+}
+
+.img-wrap img,
+.img-wrap video {
+    transition: transform 3s ease;
+}
+
+.img-wrap:hover img,
+.img-wrap:hover video {
+    transform: scale(1.05);
+}
+
+.video-overlay::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(47, 62, 51, 0.1);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.photo-with-caption {
+    position: relative;
+    width: 100%;
+}
+
+.caption-vertical {
+    position: absolute;
+    top: 0;
+    right: -30px;
+    transform: rotate(90deg) translateX(50%);
+    transform-origin: top right;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    white-space: nowrap;
+    will-change: transform;
+}
+
+.caption-vertical.left-side {
+    right: auto;
+    left: -30px;
+    transform: rotate(-90deg) translateX(-50%);
+    transform-origin: top left;
+}
+
+.sage-text {
+    color: var(--color-sage) !important;
+    opacity: 0.6 !important;
+}
+
+
+/* HEADER */
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    padding-top: 3rem;
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.logo a {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+}
+
+/* HERO */
+.hero-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 85vh;
+    gap: 5%;
+}
+
+.hero-left {
+    flex: 0 0 50%;
+    position: relative;
+    z-index: 20;
+}
+
+.hero-right {
+    flex: 0 0 40%;
+    position: relative;
+    z-index: 20;
+}
+
+/* PHILOSOPHY */
+.philosophy-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 80px;
+}
+
+.philosophy-text-content {
+    flex: 1;
+    position: relative;
+    z-index: 20;
+    position: sticky;
+    top: 250px;
+    align-self: flex-start;
+}
+
+.philosophy-video-content {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 25vh;
+}
+
+/* ABOUT (WORKS) */
+.about-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 80px;
+}
+
+.about-text-content {
+    flex: 1;
+    position: relative;
+    z-index: 20;
+}
+
+.about-gallery {
+    flex: 1;
+    display: flex;
+}
+
+.ladder-down {
+    transform: translateY(80px);
+}
+
+/* SERVICES */
+.services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.service-table {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 20;
+}
+
+.service-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 20px;
+    cursor: pointer;
+    transition: background-color 0.4s ease;
+    border-bottom: 1px solid var(--line-color);
+}
+
+.service-row:hover {
+    background-color: var(--color-sage);
+}
+
+.service-name {
+    font-family: var(--font-serif);
+    font-size: clamp(2.2rem, 3vw, 2.5rem);
+    font-weight: 300;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.service-price {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.service-line {
+    flex: 1;
+    border-bottom: 1px solid var(--line-color);
+    margin: 0 2rem;
+    transition: border-color 0.4s ease;
+    transform: translateY(-5px);
+    pointer-events: none;
+}
+
+.service-row:hover .service-line {
+    border-bottom: 1px solid var(--text-inverted);
+}
+
+/* FOOTER */
+.footer {
+    height: 100vh;
+    width: 100vw;
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 30;
+}
+
+.footer-corners {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100%;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    right: 5%;
+    bottom: 5%;
+    pointer-events: none;
+}
+
+.footer-corner {
+    pointer-events: auto;
+}
+
+.top-left {
+    align-self: start;
+    justify-self: start;
+}
+
+.top-right {
+    align-self: start;
+    justify-self: end;
+}
+
+.bottom-left {
+    align-self: end;
+    justify-self: start;
+}
+
+.bottom-right {
+    align-self: end;
+    justify-self: end;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.footer-corner h4 {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    opacity: 0.5 !important;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.footer-corner p,
+.footer-corner a {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 0.8rem;
+    line-height: 1.8;
+    transition: color 0.4s ease;
+}
+
+.footer-corner a:hover {
+    color: var(--color-sage) !important;
+}
+
+.footer-center {
+    margin: auto;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.massive-logo {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 12vw, 15rem);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+
+    .cursor-ring,
+    .float-img-reveal {
+        display: none !important;
+    }
+
+    body,
+    a,
+    button,
+    input {
+        cursor: auto !important;
+    }
+
+    .container {
+        padding: 0 5%;
+    }
+
+    .bg-number {
+        font-size: 100px;
+        top: 5%;
+    }
+
+    .hero-container,
+    .about-flex,
+    .philosophy-flex {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 80px;
+    }
+
+    .hero-left,
+    .hero-right,
+    .philosophy-video-content {
+        flex: none;
+        width: 100%;
+        padding-bottom: 0;
+    }
+
+    .philosophy-text-content {
+        position: relative;
+        top: 0;
+    }
+
+    .ladder-down {
+        transform: none;
+    }
+
+    .caption-vertical {
+        display: none;
+    }
+
+    .service-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .service-line {
+        display: none;
+    }
+
+    .massive-logo {
+        font-size: 12vw;
+    }
+}

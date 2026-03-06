@@ -1,0 +1,25 @@
+node_modules/
+package.json
+package-lock.json
+optimize.js
+
+# Ignore large media files by default
+assets/*.JPG
+assets/*.jpg
+assets/*.PNG
+assets/*.png
+assets/*.MOV
+assets/*.mov
+assets/*.HEIC
+assets/*.heic
+assets/SS/
+
+# Keep optimized WebP formats explicitly
+!assets/*.webp
+
+# Keep the used video
+!assets/IMG_6653.MOV
+!assets/IMG_6653.mov
+
+# Ignore large material and instruction files
+Materials And Instruction/

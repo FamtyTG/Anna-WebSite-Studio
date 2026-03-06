@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анна Маклагина | Перманентный макияж</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,300;0,400;1,300&display=swap"
+        rel="stylesheet">
+
+    <!-- GSAP / Lenis -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.32/dist/lenis.min.js"></script>
+</head>
+
+<body>
+
+    <!-- PRELOADER (SNAKE & GLASS) -->
+    <div class="preloader">
+        <div class="preloader-content">
+            <svg class="loader-svg" viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- Base -->
+                <path d="M30 180 L70 180" fill="none" stroke="#2F3E33" stroke-width="0.5" class="loader-path" />
+                <!-- Stem -->
+                <path d="M50 180 L50 100" fill="none" stroke="#2F3E33" stroke-width="0.5" class="loader-path" />
+                <!-- Bowl -->
+                <path d="M25 40 C 25 100, 75 100, 75 40" fill="none" stroke="#2F3E33" stroke-width="0.5"
+                    class="loader-path" />
+
+                <!-- Snake Body -->
+                <path d="M60 20 C 80 20, 90 50, 60 70 C 30 90, 30 130, 60 150 C 70 155, 75 165, 60 175" fill="none"
+                    stroke="#C2B4A3" stroke-width="0.75" class="loader-path" />
+                <!-- Snake Head -->
+                <circle cx="60" cy="20" r="1.5" fill="#C2B4A3" class="loader-path-head" />
+            </svg>
+            <div class="loader-text">ANNA MAKLAGINA</div>
+        </div>
+    </div>
+
+    <!-- 4-Column Grid -->
+    <div class="bg-grid">
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+    </div>
+
+    <div class="cursor-ring"></div>
+
+    <header class="header">
+        <div class="container header-inner gsap-reveal">
+            <div class="logo">
+                <a href="#hero">Anna Maklagina.</a>
+            </div>
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="#philosophy" class="hoverable">Философия</a></li>
+                    <li><a href="#works" class="hoverable">Работы</a></li>
+                    <li><a href="#services" class="hoverable">Услуги</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- 01. HERO -->
+        <section id="hero" class="hero relative">
+            <div class="bg-number" data-speed="150">01</div>
+            <div class="container hero-container relative">
+
+                <div class="hero-left gsap-reveal">
+                    <h1 class="hero-title"><span class="nowrap italic-accent">Естественный</span><br>перманент</h1>
+                    <p class="body-text hero-subtitle">
+                        Забудьте о «нарисованных» бровях. Ежедневная красота, которая экономит ваше время. Ювелирная
+                        точность без искусственного контура. Тончайшие штрихи, создающие иллюзию природной густоты.
+                    </p>
+                    <a href="https://t.me/maclagina" target="_blank" class="btn btn-solid hoverable">Записаться на
+                        процедуру</a>
+                </div>
+
+                <div class="hero-right gsap-reveal">
+                    <div class="img-wrap aspect-3-4 hoverable gsap-parallax">
+                        <img src="assets/IMG_4485.webp" alt="Анна Маклагина">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02. PHILOSOPHY (STICKY) -->
+        <section id="philosophy" class="philosophy relative">
+            <div class="bg-number" data-speed="150">02</div>
+            <div class="container philosophy-container relative">
+                <div class="philosophy-flex">
+                    <div class="philosophy-text-content gsap-reveal">
+                        <h2 class="section-title">Тихая<br><span class="italic-accent">роскошь</span></h2>
+                        <div class="body-text">
+                            <p>Перманентный макияж не должен быть очевидным. Моя философия — это абсолютная
+                                натуральность. Я подчеркиваю вашу природу, создавая мягкие тени и деликатные контуры.
+                                Ваш образ остается благородным, свежим и статусным в любой ситуации.</p>
+                        </div>
+                    </div>
+
+                    <div class="philosophy-video-content gsap-reveal">
+                        <div class="photo-with-caption ladder-down">
+                            <!-- VIDEO OVERLAY APPLIED HERE -->
+                            <div class="img-wrap aspect-16-9 hoverable gsap-parallax video-overlay">
+                                <video autoplay muted loop playsinline class="bg-video">
+                                    <source src="assets/IMG_6653.MOV" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="caption-vertical left-side sage-text" data-speed="-50">ATMOSPHERE &bull; STUDIO
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03. WORKS (GALLERY) -->
+        <section id="works" class="about relative">
+            <div class="bg-number" data-speed="150">03</div>
+            <div class="container about-container relative">
+                <div class="about-flex">
+                    <div class="about-text-content gsap-reveal">
+                        <h2 class="section-title">Мастерство<br><span class="italic-accent">в деталях</span></h2>
+                        <div class="body-text">
+                            <p>До и после. Разница, которую замечают лишь единицы, но которая меняет восприятие всего
+                                лица. Исключительная волосковая техника, акварельные губы и деликатная межресничка.</p>
+                        </div>
+                    </div>
+
+                    <div class="about-gallery gsap-reveal">
+                        <div class="photo-with-caption ladder-down">
+                            <div class="img-wrap aspect-3-4 hoverable gsap-parallax">
+                                <img src="assets/IMG_0698.webp" alt="Детали работы">
+                            </div>
+                            <div class="caption-vertical left-side sage-text" data-speed="-50">MACRO &bull; DETAILS
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04. SERVICES (GLOBAL INVERSION) -->
+        <section id="services" class="services relative">
+            <div class="bg-number" data-speed="150">04</div>
+
+            <div class="container services-container relative">
+                <div class="services-header gsap-reveal">
+                    <h2 class="section-title"><span class="italic-accent">Услуги</span></h2>
+                </div>
+
+                <div class="service-table gsap-reveal">
+                    <div class="service-row hoverable" data-image="assets/IMG_4485.webp">
+                        <h3 class="service-name">Брови. Пудровое напыление</h3>
+                        <div class="service-line"></div>
+                        <div class="service-price">8 000 ₽</div>
+                    </div>
+
+                    <div class="service-row hoverable" data-image="assets/IMG_0698.webp">
+                        <h3 class="service-name">Брови. Волосковая техника</h3>
+                        <div class="service-line"></div>
+                        <div class="service-price">10 000 ₽</div>
+                    </div>
+
+                    <div class="service-row hoverable" data-image="assets/IMG_4485.webp">
+                        <h3 class="service-name">Губы. Акварельная техника</h3>
+                        <div class="service-line"></div>
+                        <div class="service-price">8 000 ₽</div>
+                    </div>
+
+                    <div class="service-row hoverable" data-image="assets/IMG_0698.webp">
+                        <h3 class="service-name">Веки. Межресничка</h3>
+                        <div class="service-line"></div>
+                        <div class="service-price">5 000 ₽</div>
+                    </div>
+
+                    <div class="service-row hoverable" data-image="assets/IMG_4485.webp">
+                        <h3 class="service-name">Ламинирование ресниц</h3>
+                        <div class="service-line"></div>
+                        <div class="service-price">2 000 ₽</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer id="contact" class="footer hoverable">
+            <div class="footer-corners">
+                <div class="footer-corner top-left">
+                    <h4>Socials</h4>
+                    <a href="https://www.instagram.com/maclagina_pm?igsh=MWd6dG5lODhtcHE1aQ==" target="_blank"
+                        class="hoverable">Instagram</a>
+                    <a href="https://t.me/maclagina" target="_blank" class="hoverable">Telegram</a>
+                </div>
+                <div class="footer-corner top-right text-right">
+                    <h4>Location</h4>
+                    <p>г. Казань, ул. Николая Столбова,2<br>Anna's Studio</p>
+                </div>
+                <div class="footer-corner bottom-left">
+                    <h4>Book</h4>
+                    <a href="https://t.me/maclagina" target="_blank" class="btn btn-solid invert hoverable">Записаться
+                        онлайн</a>
+                </div>
+                <div class="footer-corner bottom-right text-right">
+                    <h4>Contact</h4>
+                    <p>+7 928 410 6602</p>
+                    <p>&copy; 2026. ALL RIGHTS RESERVED.</p>
+                </div>
+            </div>
+
+            <div class="footer-center gsap-reveal">
+                <h2 class="massive-logo">ANNA MAKLAGINA</h2>
+            </div>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
