@@ -1023,6 +1023,14 @@ video {
     .hero-bg-img {
         object-position: center center;
         /* Keep entirely visible and centered on mobile */
+        filter: brightness(0.8) contrast(1.1) blur(2px);
+        /* Lower exposure and add slight artistic blur */
+    }
+
+    .hero-overlay {
+        background: rgba(0, 0, 0, 0.4);
+        /* Darken overall to pop the text */
+        z-index: 3;
     }
 
     .section-title {
