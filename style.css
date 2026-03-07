@@ -726,6 +726,94 @@ video {
     transform: translateY(80px);
 }
 
+/* REVIEWS SECTION */
+.reviews-container {
+    padding-bottom: 80px;
+}
+
+.marquee-wrapper {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    padding: 32px 0;
+}
+
+.marquee-wrapper::before,
+.marquee-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 20%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.marquee-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, var(--bg-color) 0%, transparent 100%);
+}
+
+.marquee-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, var(--bg-color) 0%, transparent 100%);
+}
+
+.marquee-track {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: max-content;
+    animation: marquee-scroll 50s linear infinite;
+    will-change: transform;
+}
+
+.marquee-track:hover {
+    animation-play-state: paused;
+}
+
+.marquee-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 32px;
+    padding-right: 32px;
+}
+
+.marquee-item {
+    height: 560px;
+    width: 315px;
+    /* Aspect 9:16 */
+    flex-shrink: 0;
+    position: relative;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+    /* Premium shadow */
+    transition: transform 0.6s cubic-bezier(0.2, 1, 0.2, 1), filter 0.6s ease;
+    filter: grayscale(40%) contrast(0.95);
+    background-color: var(--line-color);
+}
+
+.marquee-item:hover {
+    transform: translateY(-16px) scale(1.02);
+    filter: grayscale(0%) contrast(1.05);
+    z-index: 10;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+}
+
+@keyframes marquee-scroll {
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+        animation-play-state: paused !important;
+    }
+}
+
 /* SERVICES */
 .services-container {
     max-width: 1200px;
@@ -1157,5 +1245,20 @@ video {
         width: 100%;
         text-align: center;
         margin-top: 1rem;
+    }
+
+    /* REVIEWS MOBILE OVERRIDES */
+    .marquee-wrapper {
+        padding: 16px 0;
+    }
+
+    .marquee-content {
+        gap: 16px;
+        padding-right: 16px;
+    }
+
+    .marquee-item {
+        height: 360px;
+        width: 202px;
     }
 }
